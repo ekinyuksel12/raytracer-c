@@ -1,7 +1,8 @@
 #ifndef VEC3_H
-#define VEC3_h
+#define VEC3_H
 
 #include <iostream>
+#include <cmath>
 
 class vec3
 {   
@@ -47,7 +48,7 @@ public:
     }
 
     double length() const {
-        return std::sqrt(lenght_squared());
+        return std::sqrt(length_squared());
     }
 
     double length_squared() const {
