@@ -1,6 +1,9 @@
 #include <iostream>
 #include <fstream>
 
+#include "vec3.h"
+#include "color.h"
+
 using namespace std;
 
 int main () {
@@ -25,21 +28,11 @@ int main () {
 
         for (int i = 0; i < img_width; i++)
         {
-            // Normalize the values of rgb from 0 - 255 to 0.0 - 1.0.
-            // That is because we will use them to calculate the pixel color values.
-            // We basically turn these into percentages.
-            double r = double(i) / (img_width - 1);
-            double g = double(j) / (img_height - 1);
-            double b = 0; // We ignore blue for this one.
+            color pixel = color(double (i) / (img_width - 1),
+                                double (j) / (img_height - 1),
+                                0);
 
-            // Calculating the pixel color values.
-            int pixel_r = int(255.999 * r);
-            int pixel_g = int(255.999 * g);
-            int pixel_b = int(255.999 * b);
-
-            ppm_image << " " << pixel_r;
-            ppm_image << " " << pixel_g;
-            ppm_image << " " << pixel_b;
+            write_pixel_color(ppm_image, pixel);
         }
 
         ppm_image << "\n";
